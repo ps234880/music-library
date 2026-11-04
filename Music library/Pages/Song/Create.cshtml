@@ -1,0 +1,56 @@
+@page
+@model Dashboard_Sales_Dev.Pages.Quotation.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Song"] = "Create";
+}
+
+
+<form method="post">
+    <div>
+        <div>Song</div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Song.Title" class="form-label">Title </label>
+                    <input asp-for="Song.Title" class="form-control bg-light text-dark border-secondary"/>
+                    <span asp-validation-for="Song.Title" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Song.ArtistId"></label>
+                    <input asp-for="Song.ArtistId" class="form-control"></>
+                    <span asp-validation-for="Song.ArtistId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Song.Genre"></label>
+                    <input asp-for="Song.Genre" class="form-control"></>
+                    <span asp-validation-for="Song.Genre" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Song.DurationInSeconds">
+                        Duration (seconds)
+                    </label>
+                    <input asp-for="Song.DurationInSeconds" class="form-control"></>
+                    <span asp-validation-for="Song.DurationInSeconds" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Song.Image"></label>
+                    <input asp-for="Song.Image" class="form-control"></>
+                    <span asp-validation-for="Song.Image" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Song.File"></label>
+                    <input asp-for="Song.File" class="form-control"></>
+                    <span asp-validation-for="Song.File" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+        <a asp-page="./Index" class="btn btn-outline-secondary">Annuleren</a>
+        <button type="submit" class="btn btn-primary px-4">Opslaan</button>
+    </div>
+
+</form>
