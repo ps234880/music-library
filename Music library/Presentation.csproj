@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="26.10.0" />
+    <ProjectReference Include="..\DAL\Persistence.csproj" />
+    <ProjectReference Include="..\Logic\Application.csproj" />
   </ItemGroup>
 
 </Project>
