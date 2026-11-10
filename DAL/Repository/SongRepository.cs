@@ -1,4 +1,5 @@
-﻿using Music_library.Model;
+﻿using Microsoft.Extensions.Configuration;
+using Music_library.Model;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using System.Reflection;
@@ -14,6 +15,7 @@ namespace Music_library.Repository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
         }
+        // dit kan hardcoded zijn
 
         public List<Song> GetAll()
         {
