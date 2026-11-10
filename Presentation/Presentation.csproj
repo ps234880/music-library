@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Presentation</RootNamespace>
+    <RootNamespace>Music_library</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
