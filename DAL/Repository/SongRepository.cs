@@ -11,10 +11,15 @@ namespace Music_library.Repository
         private readonly string _connectionString;
 
         // constructor met de interface configuratie van databaseconnectie
-        public SongRepository(IConfiguration configuration)
+        //public SongRepository(IConfiguration configuration)
+        //{
+        //    _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+        //}
+        public SongRepository()
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection")!;
+            _connectionString = "Server=localhost;Database=musiclibrary;Uid=root;Pwd=password;";
         }
+
         // dit kan hardcoded zijn
 
         public List<Song> GetAll()
@@ -26,8 +31,8 @@ namespace Music_library.Repository
             connection.Open();
 
             // stel dat je miljoenen songs hebt. paging offset. als het meer dan 2 paginas zijn offset gebruiken
-            string query =
-                @"SELECT id, artist_id, title, genre, durationInSeconds, image, file 
+            string query =@"
+            SELECT id, artist_id, title, genre, durationInSeconds, image, file 
             FROM song";
 
             // sql command aanmaken en uitvoeren
@@ -56,14 +61,17 @@ namespace Music_library.Repository
 
         public async Task<int> AddSongAsync(Song song)
         {
-            // opent database asyncrhoom 
+            // open de databaseverbinding asynchroon.
+            // get programma wacht totdat de verbinding geopend is,
+            // maar de huidige thread kan ondertussen ander werk uitvoeren.
+            // await wacht totdat de verbinding geopend is, zonder de huidige thread te blokkeren.
             using var connection = new MySqlConnection(_connectionString);
-            await connection.OpenAsync(); // dit spreekt miss tegen
+            await connection.OpenAsync();
 
             var sql = @"
-        INSERT INTO song
+            INSERT INTO song
             (artist_id, title, genre, durationInSeconds, image, file)
-        VALUES
+            VALUES
             (@artist_id, @title, @genre, @durationInSeconds, @image, @file);";
 
             // create sql command
