@@ -9,13 +9,20 @@ namespace Music_library.Pages.Song
     {
         private readonly SongRepository _songRepository;
 
-        // voorbeeld van solid principe D. Dependency Inversion Principle. high/low level code verdelen
+        // dependancy injection. is nog niet volledig
         public IndexModel(SongRepository songRepository)
         {
             _songRepository = songRepository;
         }
 
-        public List<Model.Song> Songs { get; private set; } = [];
+        // zonder depdancy injection
+        //public IndexModel()
+        //{
+        //    _songRepository = new SongRepository();
+        //}
+
+        // alleen eigen class mag dingen wijzigen
+        public List<Model.Song> Songs { get; private set; } = new List<Model.Song>();
 
         public void OnGet()
         {
