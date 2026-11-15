@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Music_library.Model;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using System.Reflection;
+using Domain.Model;
 
-namespace Music_library.Repository
+namespace Persistence.Repository
 {
     public class SongRepository
     {
@@ -86,6 +86,20 @@ namespace Music_library.Repository
             cmd.Parameters.AddWithValue("@file", song.File);
 
             // execute insert statement
+            return await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task<int> DeleteSongAsync(int id)
+        {
+            using var connection = new MySqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var sql = "DELETE FROM song WHERE id = @id;";
+
+            using var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
             return await cmd.ExecuteNonQueryAsync();
         }
     }

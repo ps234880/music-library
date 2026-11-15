@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Music_library.Repository;
+using Persistence.Repository;
 using System.Reflection;
 
-namespace Music_library.Pages.Song
+namespace Presentation.Pages.Songs
 {
     public class IndexModel : PageModel
     {
@@ -22,11 +22,18 @@ namespace Music_library.Pages.Song
         //}
 
         // alleen eigen class mag dingen wijzigen
-        public List<Model.Song> Songs { get; private set; } = new List<Model.Song>();
+        public List<Domain.Model.Song> Songs { get; private set; } = new List<Domain.Model.Song>();
 
         public void OnGet()
         {
             Songs = _songRepository.GetAll();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            await _songRepository.DeleteSongAsync(id);
+
+            return RedirectToPage();
         }
     }
 }

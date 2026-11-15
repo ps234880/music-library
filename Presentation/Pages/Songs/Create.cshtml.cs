@@ -1,11 +1,10 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Reflection;
-using Music_library.Model;
-using Music_library.Repository;
+using Persistence.Repository;
+using Domain.Model;
 
-namespace Dashboard_Sales_Dev.Pages.Quotation
+namespace Presentation.Pages.Songs
 {
     public class CreateModel : PageModel
     {

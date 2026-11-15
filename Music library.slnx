@@ -1,6 +1,5 @@
 <Solution>
   <Project Path="DAL/Persistence.csproj" Id="12afd63e-39b2-4184-905f-5bddcd632777" />
-  <Project Path="Domain/Domain.csproj" Id="32822718-e4ae-4655-93af-de815f6ae36f" />
   <Project Path="Logic/Application.csproj" Id="aea67a1c-dbcf-420a-b0bd-f7be83d0f1cc" />
   <Project Path="Presentation/Presentation.csproj" />
 </Solution>

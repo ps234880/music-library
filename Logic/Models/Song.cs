@@ -1,4 +1,4 @@
-﻿namespace Music_library.Model
+﻿namespace Domain.Model
 {
     public class Song
     {
