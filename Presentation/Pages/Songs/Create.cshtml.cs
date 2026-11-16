@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Persistence.Repository;
-using Domain.Model;
+using Application.Model;
 
 namespace Presentation.Pages.Songs
 {

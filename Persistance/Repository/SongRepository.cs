@@ -2,7 +2,7 @@
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using System.Reflection;
-using Domain.Model;
+using Application.Model;
 
 namespace Persistence.Repository
 {
@@ -11,16 +11,14 @@ namespace Persistence.Repository
         private readonly string _connectionString;
 
         // constructor met de interface configuratie van databaseconnectie
-        //public SongRepository(IConfiguration configuration)
-        //{
-        //    _connectionString = configuration.GetConnectionString("DefaultConnection")!;
-        //}
-        public SongRepository()
+        public SongRepository(IConfiguration configuration)
         {
-            _connectionString = "Server=localhost;Database=musiclibrary;Uid=root;Pwd=password;";
+            _connectionString = configuration.GetConnectionString("DefaultConnection")!;
         }
-
-        // dit kan hardcoded zijn
+        //public SongRepository()
+        //{
+        //    _connectionString = "Server=localhost;Database=musiclibrary;Uid=root;Pwd=password;";
+        //}
 
         public List<Song> GetAll()
         {
@@ -31,9 +29,11 @@ namespace Persistence.Repository
             connection.Open();
 
             // stel dat je miljoenen songs hebt. paging offset. als het meer dan 2 paginas zijn offset gebruiken
-            string query =@"
-            SELECT id, artist_id, title, genre, durationInSeconds, image, file 
-            FROM song";
+            string query = @"
+            SELECT song.id, artist.name, song.title, song.genre, song.durationInSeconds, song.image, song.file
+            FROM song
+            INNER JOIN artist
+            ON song.artist_id = artist.id";
 
             // sql command aanmaken en uitvoeren
             using MySqlCommand command = new MySqlCommand(query, connection);
@@ -45,7 +45,8 @@ namespace Persistence.Repository
                 Song song = new Song
                 {
                     Id = reader.GetInt32("id"),
-                    ArtistId = reader.GetInt32("artist_id"),
+                    //ArtistId = reader.GetInt32("artist_id"),
+                    ArtistName = reader.GetString("name"),
                     Title = reader.GetString("title"),
                     Genre = reader.GetString("genre"),
                     DurationInSeconds = reader.GetInt32("durationInSeconds"),
@@ -78,7 +79,7 @@ namespace Persistence.Repository
             using var cmd = new MySqlCommand(sql, connection);
 
             // add parameters
-            cmd.Parameters.AddWithValue("@artist_id", song.ArtistId);
+            cmd.Parameters.AddWithValue("@artist_id", song.ArtistName);
             cmd.Parameters.AddWithValue("@title", song.Title);
             cmd.Parameters.AddWithValue("@genre", song.Genre);
             cmd.Parameters.AddWithValue("@durationInSeconds", song.DurationInSeconds);
@@ -94,7 +95,8 @@ namespace Persistence.Repository
             using var connection = new MySqlConnection(_connectionString);
             await connection.OpenAsync();
 
-            var sql = "DELETE FROM song WHERE id = @id;";
+            var sql = @"DELETE FROM song
+                        WHERE id = @id";
 
             using var cmd = new MySqlCommand(sql, connection);
 

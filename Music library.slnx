@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="DAL/Persistence.csproj" Id="12afd63e-39b2-4184-905f-5bddcd632777" />
-  <Project Path="Logic/Application.csproj" Id="aea67a1c-dbcf-420a-b0bd-f7be83d0f1cc" />
+  <Project Path="Application/Application.csproj" />
+  <Project Path="Persistance/Persistence.csproj" />
   <Project Path="Presentation/Presentation.csproj" />
 </Solution>

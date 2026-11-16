@@ -22,7 +22,7 @@ namespace Presentation.Pages.Songs
         //}
 
         // alleen eigen class mag dingen wijzigen
-        public List<Domain.Model.Song> Songs { get; private set; } = new List<Domain.Model.Song>();
+        public List<Application.Model.Song> Songs { get; private set; } = new List<Application.Model.Song>();
 
         public void OnGet()
         {
