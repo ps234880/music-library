@@ -1,20 +1,28 @@
 
+using Application.Models;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Persistence.Repository;
-using Application.Model;
 
 namespace Presentation.Pages.Songs
 {
     public class CreateModel : PageModel
     {
-        private readonly SongRepository _songRepository;
+        private readonly SongService _songService;   // was SongRepository
 
-        //  dependancy injection
-        public CreateModel(SongRepository songRepository)
+        // dependency injection
+        public CreateModel(SongService songService)
         {
-            _songRepository = songRepository;
+            _songService = songService;
         }
+
+        //private readonly SongRepository _songRepository;
+
+        ////  dependancy injection
+        //public CreateModel(SongRepository songRepository)
+        //{
+        //    _songRepository = songRepository;
+        //}
 
         // zonder depdancy injection
         //public IndexModel()
@@ -25,7 +33,8 @@ namespace Presentation.Pages.Songs
         // connect data van submitted form values
         [BindProperty]
         public Song Song { get; set; } = new Song();
-
+        // Todo: request model gebruiken voor formulier request DTO model
+        // Todo: research overposting
         // post request. 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -40,7 +49,7 @@ namespace Presentation.Pages.Songs
             // gebruiker B opent de overzichtspagina met alle songs
             // gebruiker C bekijkt een andere pagina
             // await zorgt ervoor dat de code wacht tot de databasebewerking klaar is voordat de volgende regel code wordt uitgevoerd
-            await _songRepository.AddSongAsync(Song);
+            await _songService.AddAsync(Song);
 
             return RedirectToPage("./Index");
         }

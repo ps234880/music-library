@@ -1,12 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
-using System.Reflection;
-using Application.Model;
+using Application.Models;
+using Application.Interfaces;
 
 namespace Persistence.Repository
 {
-    public class SongRepository
+    public class SongRepository : ISongRepository
     {
         private readonly string _connectionString;
 
@@ -27,13 +26,13 @@ namespace Persistence.Repository
             // opent connectie
             using MySqlConnection connection = new MySqlConnection(_connectionString);
             connection.Open();
-
+            // Todo: tabel alias
             // stel dat je miljoenen songs hebt. paging offset. als het meer dan 2 paginas zijn offset gebruiken
             string query = @"
             SELECT song.id, artist.name, song.title, song.genre, song.durationInSeconds, song.image, song.file
             FROM song
-            INNER JOIN artist
-            ON song.artist_id = artist.id";
+            INNER JOIN artist ON song.artist_id = artist.id
+            ORDER BY song.id";
 
             // sql command aanmaken en uitvoeren
             using MySqlCommand command = new MySqlCommand(query, connection);

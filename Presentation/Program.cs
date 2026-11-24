@@ -1,10 +1,14 @@
+using Application.Interfaces;
+using Application.Services;
 using Persistence.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<SongRepository>();
+
+builder.Services.AddScoped<ISongRepository, SongRepository>();
+builder.Services.AddScoped<SongService>();
 
 var app = builder.Build();
 
