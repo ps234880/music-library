@@ -1,17 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Application.Models
+﻿namespace Application.Models
 {
     public class Song
     {
-        // hier validatie toevoegen
         public int Id { get; set; }
 
         public int ArtistId { get; set; }
 
         public string ArtistName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; } = string.Empty;
 
         public string Genre { get; set; } = string.Empty;
