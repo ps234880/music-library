@@ -88,6 +88,5 @@ namespace Presentation.Pages.Songs
 
             return RedirectToPage("./Index");
         }
-
     }
 }

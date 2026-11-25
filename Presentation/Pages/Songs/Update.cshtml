@@ -1,0 +1,67 @@
+﻿@page
+@using Presentation.Pages.Songs
+@model UpdateModel
+
+@{
+    ViewData["Title"] = "Update song";
+}
+
+<h2>Update song</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Song.Id" />
+
+    <div class="card-body">
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label asp-for="Song.Title" class="form-label"></label>
+                <input asp-for="Song.Title" class="form-control" />
+                <span asp-validation-for="Song.Title" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Song.ArtistId" class="form-label">Artist</label>
+                <select asp-for="Song.ArtistId" class="form-select">
+                    @foreach (var artist in Model.Artists)
+                    {
+                        <option value="@artist.Value">@artist.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Song.ArtistId" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Song.Genre" class="form-label"></label>
+                <input asp-for="Song.Genre" class="form-control" />
+                <span asp-validation-for="Song.Genre" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Song.DurationInSeconds" class="form-label">
+                    Duration (seconds)
+                </label>
+                <input asp-for="Song.DurationInSeconds" class="form-control" />
+                <span asp-validation-for="Song.DurationInSeconds" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Song.Image" class="form-label"></label>
+                <input asp-for="Song.Image" class="form-control" />
+                <span asp-validation-for="Song.Image" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Song.File" class="form-label"></label>
+                <input asp-for="Song.File" class="form-control" />
+                <span asp-validation-for="Song.File" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-3">
+        <a asp-page="./Index" class="btn btn-outline-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary px-4">Save</button>
+    </div>
+</form>

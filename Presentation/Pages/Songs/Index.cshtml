@@ -41,16 +41,26 @@
                         <td>@song.Image</td>
                         <td>@song.File</td>
                         <td>
-                            <form method="post"
-                                  asp-page-handler="Delete"
-                                  asp-route-id="@song.Id"
-                                  onsubmit="return confirm('Are you sure you want to delete this song?');">
+                            <div class="d-flex gap-2">
 
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <a asp-page="./Update"
+                                   asp-route-id="@song.Id"
+                                   class="btn btn-warning btn-sm">
+                                    Update
+                                </a>
 
-                            </form>
+                                <form method="post"
+                                      asp-page-handler="Delete"
+                                      asp-route-id="@song.Id"
+                                      onsubmit="return confirm('Are you sure you want to delete this song?');">
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
                         </td>
                     </tr>
                 }

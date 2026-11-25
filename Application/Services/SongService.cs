@@ -17,6 +17,11 @@ namespace Application.Services
             return _songRepository.GetAll();
         }
 
+        public async Task<Song?> GetByIdAsync(int id)
+        {
+            return await _songRepository.GetByIdAsync(id);
+        }
+
         public async Task<int> AddAsync(Song song)
         {
             if (string.IsNullOrWhiteSpace(song.Title))
@@ -26,7 +31,7 @@ namespace Application.Services
 
             if (song.ArtistId <= 0)
             {
-                throw new ArgumentException("Selecteer een artiest.");
+                throw new ArgumentException("Select an artist.", nameof(song.ArtistId));
             }
 
             if (string.IsNullOrWhiteSpace(song.Genre))
@@ -50,6 +55,11 @@ namespace Application.Services
             }
 
             return await _songRepository.AddSongAsync(song);
+        }
+
+        public async Task<int> UpdateAsync(Song song)
+        {
+            return await _songRepository.UpdateSongAsync(song);
         }
 
         public async Task<int> DeleteAsync(int id)
