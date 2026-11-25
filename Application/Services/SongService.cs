@@ -23,13 +23,30 @@ namespace Application.Services
             {
                 throw new ArgumentException("Een nummer heeft een titel nodig.");
             }
+
+            if (song.ArtistId <= 0)
+            {
+                throw new ArgumentException("Selecteer een artiest.");
+            }
+
             if (string.IsNullOrWhiteSpace(song.Genre))
             {
                 throw new ArgumentException("Een nummer heeft een genre nodig.");
             }
+
             if (song.DurationInSeconds <= 0)
             {
                 throw new ArgumentException("De duur moet groter dan nul zijn.");
+            }
+
+            if (string.IsNullOrWhiteSpace(song.Image))
+            {
+                throw new ArgumentException("Een nummer heeft een foto nodig.");
+            }
+
+            if (string.IsNullOrWhiteSpace(song.File))
+            {
+                throw new ArgumentException("Een nummer heeft een bestand nodig.");
             }
 
             return await _songRepository.AddSongAsync(song);
