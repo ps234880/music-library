@@ -1,0 +1,23 @@
+﻿@page
+@using Presentation.Pages.Artists
+@model IndexModel
+
+<h1>Artists</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var artist in Model.Artists)
+        {
+            <tr>
+                <td>@artist.Name</td>
+                <td>@artist.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

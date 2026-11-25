@@ -1,6 +1,6 @@
 using Application.Interfaces;
 using Application.Services;
-using Persistence.Repository;
+using Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 builder.Services.AddScoped<SongService>();
+
+builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<ArtistService>();
 
 var app = builder.Build();
 
