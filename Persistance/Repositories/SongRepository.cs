@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 using Application.Models;
 using Application.Interfaces;
 
-namespace Persistence.Repository
+namespace Persistence.Repositories
 {
     public class SongRepository : ISongRepository
     {

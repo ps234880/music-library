@@ -1,4 +1,6 @@
-﻿namespace Application.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Application.Models
 {
     public class Song
     {
@@ -9,6 +11,7 @@
 
         public string ArtistName { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; } = string.Empty;
 
         public string Genre { get; set; } = string.Empty;

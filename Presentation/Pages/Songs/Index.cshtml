@@ -24,7 +24,7 @@
                     <th>Artist Name</th>
                     <th>Title</th>
                     <th>Genre</th>
-                    <th>Duration (seconds)</th>
+                    <th>Duration</th>
                     <th>Image</th>
                     <th>File</th>
                     <th>Actions</th>
@@ -38,7 +38,9 @@
                         <td>@song.ArtistName</td>
                         <td>@song.Title</td>
                         <td>@song.Genre</td>
-                        <td>@song.DurationInSeconds</td>
+                        <td>
+                            @TimeSpan.FromSeconds(song.DurationInSeconds).ToString(@"m\:ss")
+                        </td>
                         <td>@song.Image</td>
                         <td>@song.File</td>
                         <td>
