@@ -2,10 +2,6 @@
 @using Presentation.Pages.Artists
 @model IndexModel
 
-@{
-    ViewData["Title"] = "Artists";
-}
-
 <div class="container mt-4">
     <h2>Artist Overzicht</h2>
 
@@ -25,6 +21,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -35,6 +32,28 @@
                         <td>@artist.Id</td>
                         <td>@artist.Name</td>
                         <td>@artist.Description</td>
+                        <td>
+                            <div class="d-flex gap-2">
+
+                                <a asp-page="./Update"
+                                   asp-route-id="@artist.Id"
+                                   class="btn btn-warning btn-sm">
+                                    Update
+                                </a>
+
+                                <form method="post"
+                                      asp-page-handler="Delete"
+                                      asp-route-id="@artist.Id"
+                                      onsubmit="return confirm('Are you sure you want to delete this artist?');">
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>

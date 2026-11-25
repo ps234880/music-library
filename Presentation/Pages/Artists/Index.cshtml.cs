@@ -1,5 +1,6 @@
 using Application.Models;
 using Application.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Presentation.Pages.Artists
@@ -18,6 +19,13 @@ namespace Presentation.Pages.Artists
         public void OnGet()
         {
             Artists = _artistService.GetAll();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            await _artistService.DeleteAsync(id);
+
+            return RedirectToPage();
         }
     }
 }
