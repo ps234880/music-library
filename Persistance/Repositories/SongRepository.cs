@@ -78,9 +78,9 @@ namespace Persistence.Repositories
             using var cmd = new MySqlCommand(sql, connection);
 
             // add parameters
-            cmd.Parameters.AddWithValue("@artist_id", song.ArtistName);
+            cmd.Parameters.AddWithValue("@artist_id", song.ArtistId);
             cmd.Parameters.AddWithValue("@title", song.Title);
-            cmd.Parameters.AddWithValue("@genre", song.Genre);
+            cmd.Parameters.AddWithValue("@genre", song.Genre);  
             cmd.Parameters.AddWithValue("@durationInSeconds", song.DurationInSeconds);
             cmd.Parameters.AddWithValue("@image", song.Image);
             cmd.Parameters.AddWithValue("@file", song.File);
